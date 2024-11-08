@@ -1,6 +1,6 @@
-package com.mesome.account.controller;
+package com.wev.domain.accounttimezone.controller;
 
-import com.mesome.account.service.TimezoneService;
+import com.wev.domain.accounttimezone.service.AccountTimezoneService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/timezone")
-public class TimezoneController {
-    private final TimezoneService timezoneService;
+public class AccountTimezoneController {
+    private final AccountTimezoneService accountTimezoneService;
 
     // 1. 타임존 업데이트 필요 여부 확인
     @GetMapping("/check")
@@ -25,7 +25,7 @@ public class TimezoneController {
             return false;
         }
 
-        return timezoneService.isTimezoneUpdateRequired(accountId, currentTimezone);
+        return accountTimezoneService.isTimezoneUpdateRequired(accountId, currentTimezone);
     }
 
     // 2. 타임존 업데이트

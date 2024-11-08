@@ -1,7 +1,8 @@
-package com.mesome.account.service;
+package com.wev.domain.service;
 
-import com.mesome.account.entity.Account;
-import com.mesome.account.repository.AccountRepository;
+import com.wev.domain.accounttimezone.model.AccountTimezone;
+import com.wev.domain.accounttimezone.repository.AccountTimezoneRepository;
+import com.wev.domain.accounttimezone.service.AccountTimezoneService;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,13 +16,13 @@ import java.util.Optional;
 import java.time.ZonedDateTime;
 
 @ExtendWith(MockitoExtension.class)
-class TimezoneServiceTest {
+class AccountTimezoneServiceTest {
 
     @Mock
-    private AccountRepository accountRepository;
+    private AccountTimezoneRepository accountTimezoneRepository;
 
     @InjectMocks
-    private TimezoneService timezoneService;
+    private AccountTimezoneService accountTimezoneService;
 
     @Nested
     class WhenTimezoneIsNull {
@@ -29,14 +30,14 @@ class TimezoneServiceTest {
         @Test
         void thenUpdateIsRequired() {
             Long accountId = 1L;
-            Account account = Account.builder()
+            AccountTimezone accountTimezone = AccountTimezone.builder()
                     .timezone(null)
                     .updateDeferredUntil(ZonedDateTime.now().minusMonths(1))
                     .build();
 
-            when(accountRepository.findByAccountId(accountId)).thenReturn(Optional.of(account));
+            when(accountTimezoneRepository.findByAccountId(accountId)).thenReturn(Optional.of(accountTimezone));
 
-            boolean result = timezoneService.isTimezoneUpdateRequired(accountId, "Asia/Seoul");
+            boolean result = accountTimezoneService.isTimezoneUpdateRequired(accountId, "Asia/Seoul");
 
             assertThat(result).isTrue();
         }
@@ -48,14 +49,14 @@ class TimezoneServiceTest {
         @Test
         void thenUpdateIsRequired() {
             Long accountId = 2L;
-            Account account = Account.builder()
+            AccountTimezone accountTimezone = AccountTimezone.builder()
                     .timezone("America/New_York")
                     .updateDeferredUntil(ZonedDateTime.now().minusMonths(1))
                     .build();
 
-            when(accountRepository.findByAccountId(accountId)).thenReturn(Optional.of(account));
+            when(accountTimezoneRepository.findByAccountId(accountId)).thenReturn(Optional.of(accountTimezone));
 
-            boolean result = timezoneService.isTimezoneUpdateRequired(accountId, "Asia/Seoul");
+            boolean result = accountTimezoneService.isTimezoneUpdateRequired(accountId, "Asia/Seoul");
 
             assertThat(result).isTrue();
         }
@@ -67,28 +68,28 @@ class TimezoneServiceTest {
         @Test
         void thenUpdateIsNotRequired() {
             Long accountId = 3L;
-            Account account = Account.builder()
+            AccountTimezone accountTimezone = AccountTimezone.builder()
                     .timezone("Asia/Seoul")
                     .updateDeferredUntil(ZonedDateTime.now().minusMonths(1))
                     .build();
 
-            when(accountRepository.findByAccountId(accountId)).thenReturn(Optional.of(account));
+            when(accountTimezoneRepository.findByAccountId(accountId)).thenReturn(Optional.of(accountTimezone));
 
-            boolean result = timezoneService.isTimezoneUpdateRequired(accountId, "Asia/Tokyo");
+            boolean result = accountTimezoneService.isTimezoneUpdateRequired(accountId, "Asia/Tokyo");
 
             assertThat(result).isFalse();
         }
     }
 
     @Nested
-    class WhenAccountNotFound {
+    class WhenAccountTimezoneNotFound {
 
         @Test
         void thenUpdateIsNotRequired() {
             Long accountId = 4L;
-            when(accountRepository.findByAccountId(accountId)).thenReturn(Optional.empty());
+            when(accountTimezoneRepository.findByAccountId(accountId)).thenReturn(Optional.empty());
 
-            boolean result = timezoneService.isTimezoneUpdateRequired(accountId, "Asia/Seoul");
+            boolean result = accountTimezoneService.isTimezoneUpdateRequired(accountId, "Asia/Seoul");
 
             assertThat(result).isFalse();
         }

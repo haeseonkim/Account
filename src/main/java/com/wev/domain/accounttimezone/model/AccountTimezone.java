@@ -1,4 +1,4 @@
-package com.mesome.account.entity;
+package com.wev.domain.accounttimezone.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import java.time.ZonedDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Account {
+public class AccountTimezone {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long accountId;

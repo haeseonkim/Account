@@ -1,10 +1,10 @@
-package com.mesome.account;
+package com.wev.domain;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AccountTimezoneApplicationTests {
+class AccountTimezoneTimezoneApplicationTests {
 
     @Test
     void contextLoads() {
