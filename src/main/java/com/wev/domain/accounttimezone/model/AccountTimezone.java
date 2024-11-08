@@ -13,6 +13,7 @@ import java.time.ZonedDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "ACCOUNT_TIMEZONE")
 public class AccountTimezone {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

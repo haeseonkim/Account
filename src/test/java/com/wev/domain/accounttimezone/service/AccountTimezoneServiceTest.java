@@ -1,4 +1,4 @@
-package com.wev.domain.service;
+package com.wev.domain.accounttimezone.service;
 
 import com.wev.domain.accounttimezone.model.AccountTimezone;
 import com.wev.domain.accounttimezone.repository.AccountTimezoneRepository;
