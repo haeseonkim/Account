@@ -1,4 +1,4 @@
-package com.wev.account.domain.timezone.model;
+package com.wev.account.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,8 +13,7 @@ import java.time.ZonedDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "ACCOUNT_TIMEZONE")
-public class AccountTimezone {
+public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long accountId;

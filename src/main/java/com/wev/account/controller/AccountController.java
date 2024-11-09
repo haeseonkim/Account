@@ -1,9 +1,8 @@
 package com.wev.account.controller;
 
 import com.wev.account.context.RequestContext;
-import com.wev.account.domain.timezone.AccountTimezoneService;
-import com.wev.account.domain.timezone.model.AccountTimezoneWebDTO;
-import com.wev.account.domain.timezone.model.AccountTimezoneWebDTO.*;
+import com.wev.account.service.AccountTimezoneService;
+import com.wev.account.model.AccountTimezoneWebDTO.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,16 +21,25 @@ public class AccountController {
     @GetMapping("/timezone/check")
     public ResponseEntity<Boolean> checkTimezoneUpdate() {
         RequestContext requestContext = requestContextObjectProvider.getObject();
-        return ResponseEntity.ok(accountTimezoneService.isTimezoneUpdateRequired(requestContext.getAccountId(), requestContext.getTimeZone()));
+        return ResponseEntity.ok(accountTimezoneService.isTimezoneUpdateRequired(requestContext.getAccountId(), requestContext.getTimezone()));
     }
 
     // 2) 타임존 업데이트 - 사용자가 선택한 타임존으로 세팅될 수 있음. 유보시간 설정 할 수도 있음.
     @PutMapping("/timezone/update")
     public ResponseEntity<GetWebRes> updateTimezone(
-            @RequestBody AccountTimezoneWebDTO.UpdateWebReq req
+            @RequestParam(required = false, defaultValue = "false") boolean updateTimezone,
+            @RequestParam(required = false) String timezone,
+            @RequestParam(required = false, defaultValue = "false") boolean isDeferred
     ) {
         RequestContext requestContext = requestContextObjectProvider.getObject();
-        return ResponseEntity.ok(accountTimezoneService.updateTimezoneAndDeferred(req.toServiceDto(requestContext.getAccountId())));
+
+        // 타임존 업데이트 여부에 따라 timezone 값을 설정
+        String effectiveTimezone = null;
+        if (updateTimezone) {
+            effectiveTimezone = (timezone != null) ? timezone : requestContext.getTimezone();
+        }
+
+        return ResponseEntity.ok(accountTimezoneService.updateTimezoneAndDeferred(requestContext.getAccountId(), effectiveTimezone, isDeferred));
     }
 
     // 3) 전체 타임존 목록 조회

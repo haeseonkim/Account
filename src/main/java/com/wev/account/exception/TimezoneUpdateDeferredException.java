@@ -1,4 +1,4 @@
-package com.wev.account.domain.timezone.exception;
+package com.wev.account.exception;
 
 import java.time.ZonedDateTime;
 

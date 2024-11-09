@@ -1,9 +1,8 @@
-package com.wev.account.domain.timezone.model;
+package com.wev.account.model;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import jakarta.validation.constraints.NotNull;
 
 import java.time.ZonedDateTime;
 
@@ -14,18 +13,6 @@ public class AccountTimezoneWebDTO {
 
     private AccountTimezoneWebDTO() {
         throw new IllegalStateException("Dto group class");
-    }
-
-
-    @Getter
-    public static class UpdateWebReq {
-        private String timezone;
-        @NotNull
-        private boolean isDeferred;
-
-        public AccountTimezoneServiceDTO.UpdateDTO toServiceDto(Long accountId) {
-            return AccountTimezoneMapper.INSTANCE.toServiceDto(this, accountId);
-        }
     }
 
     @Getter

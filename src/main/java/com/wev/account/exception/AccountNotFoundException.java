@@ -1,4 +1,4 @@
-package com.wev.account.domain.timezone.exception;
+package com.wev.account.exception;
 
 public class AccountNotFoundException extends RuntimeException {
     public AccountNotFoundException(Long accountId) {

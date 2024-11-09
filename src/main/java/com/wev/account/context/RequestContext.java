@@ -11,5 +11,5 @@ import org.springframework.web.context.annotation.RequestScope;
 @RequestScope
 public class RequestContext {
     private Long accountId;
-    private String timeZone;
+    private String timezone;
 }
