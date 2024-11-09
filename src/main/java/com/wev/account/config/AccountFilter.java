@@ -32,7 +32,7 @@ public class AccountFilter extends OncePerRequestFilter {
         requestContext.setTimezone(timeZone);
 
 
-        // RequestContext  accountId 세팅
+        // RequestContext  accountId 세팅 (accountId는 무조건 있음)
         String accountIdHeader = request.getHeader("Account-Id");
         if (accountIdHeader != null) {
             requestContext.setAccountId(Long.valueOf(accountIdHeader));
