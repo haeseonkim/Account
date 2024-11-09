@@ -2,7 +2,6 @@ package com.wev.account.config;
 
 import com.wev.account.context.RequestContext;
 import com.wev.account.exception.MissingHeaderException;
-import com.wev.account.exception.TimezoneNotFoundException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
