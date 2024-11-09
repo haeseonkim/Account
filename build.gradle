@@ -38,7 +38,10 @@ dependencies {
     implementation 'org.mapstruct:mapstruct:1.5.2.Final'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.2.Final'
 
-    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'jakarta.annotation:jakarta.annotation-api:2.1.1'
+    implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
+
+
 }
 
 tasks.named('test') {
