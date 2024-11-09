@@ -7,5 +7,5 @@ import org.mapstruct.factory.Mappers;
 public interface AccountTimezoneMapper {
     AccountTimezoneMapper INSTANCE = Mappers.getMapper(AccountTimezoneMapper.class);
 
-    AccountTimezoneWebDTO.GetWebRes toWebDto(Account account);
+    AccountTimezoneWebDTO.GetWebResponse toWebDto(Account account);
 }

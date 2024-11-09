@@ -49,7 +49,7 @@ class AccountTimezoneServiceTest {
                 .build();
 
         // when
-        AccountTimezoneWebDTO.GetWebRes webRes = accountTimezoneMapper.toWebDto(account);
+        AccountTimezoneWebDTO.GetWebResponse webRes = accountTimezoneMapper.toWebDto(account);
 
         // then
         assertNotNull(webRes);  // 매핑 결과가 null이 아닌지 확인

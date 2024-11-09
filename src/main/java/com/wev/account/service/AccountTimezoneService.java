@@ -39,7 +39,7 @@ public class AccountTimezoneService {
     // 2. timezone or deferred 업데이트
     // 1) account가 없으면 에러를 리턴
     @Transactional
-    public GetWebRes updateTimezoneAndDeferred(Long accountId, String currentTimezone, boolean isDeferred) {
+    public GetWebResponse updateTimezoneAndDeferred(Long accountId, String currentTimezone, boolean isDeferred) {
         Account account = findAccountOrThrow(accountId);
 
         return updateAccountTimezone(account, currentTimezone, isDeferred);
@@ -58,7 +58,7 @@ public class AccountTimezoneService {
                 .orElseThrow(() -> new AccountNotFoundException(accountId));
     }
 
-    private GetWebRes updateAccountTimezone(Account account, String timezone, boolean isDeferred) {
+    private GetWebResponse updateAccountTimezone(Account account, String timezone, boolean isDeferred) {
         if (timezone != null) {
             account.updateTimezone(timezone);
         }

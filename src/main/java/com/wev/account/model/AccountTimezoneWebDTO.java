@@ -17,7 +17,7 @@ public class AccountTimezoneWebDTO {
 
     @Getter
     @Builder
-    public static class GetWebRes {
+    public static class GetWebResponse {
         private Long accountId;
         private String timezone;
         private ZonedDateTime updateDeferredUntil;

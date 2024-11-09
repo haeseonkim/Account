@@ -26,7 +26,7 @@ public class AccountController {
 
     // 2) 타임존 업데이트 - 사용자가 선택한 타임존으로 세팅될 수 있음. 유보시간 설정 할 수도 있음.
     @PutMapping("/timezone/update")
-    public ResponseEntity<GetWebRes> updateTimezone(
+    public ResponseEntity<GetWebResponse> updateTimezone(
             @RequestParam(required = false, defaultValue = "false") boolean updateTimezone,
             @RequestParam(required = false) String timezone,
             @RequestParam(required = false, defaultValue = "false") boolean isDeferred
